@@ -1,0 +1,88 @@
+<!--
+Copyright (2022) Kody Moodley
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+<html>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>TRAViz test - CollAIte</title>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/traviz.css') }}" type="text/css"/>
+        <script src="{{ url_for('static', filename='js/traviz.js') }}"> </script>
+        <style>
+            .noun { 
+                background-color: rgba(82,235,86,0.75); 
+            }
+            .adjectives { 
+                background-color: rgba(255, 202, 0, 0.54); 
+            }
+            .verbs {
+                background-color: rgba(255, 164, 211, 0.8);
+            }
+            .adverbs {
+                background-color: rgba(102, 143, 255, 0.54);
+            }
+            #postagtype {
+                position: fixed;
+                background: white;
+                bottom: 0;
+                left: 50%;
+                margin-left: -70px;
+                /* top: 0; */
+                padding-right: 10px;
+                padding-top: 10px;
+                border-color: coral;
+                border-width: thin;
+                border-style: solid;
+            }    
+            #basicContainerDiv {
+                padding-top: 50px;
+            }
+        </style>
+    </head>
+    <!-- style="overflow-y:hidden" -->
+    <div id="basicContainerDiv" ></div>
+    <div id="postagtype">
+        <input type="checkbox" id="nouns" name="nouns" value="Nouns" onchange="traviz.refresh(document.getElementById('nouns').checked, 
+        document.getElementById('adjectives').checked, 
+        document.getElementById('verbs').checked,
+        document.getElementById('adverbs').checked)" checked>
+        <label for="nouns"><mark class="noun">Nouns</mark></label><br>
+        <input type="checkbox" id="adjectives" name="adjectives" onchange="traviz.refresh(document.getElementById('nouns').checked, 
+        document.getElementById('adjectives').checked, 
+        document.getElementById('verbs').checked,
+        document.getElementById('adverbs').checked)" value="Adjectives" checked>
+        <label for="adjectives"><mark class="adjectives">Adjectives</mark></label><br>
+        <input type="checkbox" id="adverbs" name="adverbs" value="Adverbs" onchange="traviz.refresh(document.getElementById('nouns').checked, 
+        document.getElementById('adjectives').checked, 
+        document.getElementById('verbs').checked,
+        document.getElementById('adverbs').checked)" checked>
+        <label for="adverbs"><mark class="adverbs">Adverbs</mark></label><br>
+        <input type="checkbox" id="verbs" name="verbs" value="Verbs" onchange="traviz.refresh(document.getElementById('nouns').checked, 
+        document.getElementById('adjectives').checked, 
+        document.getElementById('verbs').checked,
+        document.getElementById('adverbs').checked)" checked>
+        <label for="verbs"><mark class="verbs">Verbs</mark></label><br><br>
+    </div>
+    <body>
+        <script type="text/javascript">
+            var witnesses = {{ data | tojson }};
+            var traviz = new TRAViz("basicContainerDiv",{
+                lineBreaks: true,
+                lineNumbering: true,
+                font: "Sawasdee",
+                connectionType: 'majority'
+            });
+            traviz.align(witnesses);
+            traviz.visualize(document.getElementById('nouns').checked, 
+                                document.getElementById('adjectives').checked, 
+                                document.getElementById('verbs').checked,
+                                document.getElementById('adverbs').checked);
+        </script>
+    </body>
+</html>
+<!-- the key to highlighting vertex text is to modify "vertexBackground" value in traviz.js-->
