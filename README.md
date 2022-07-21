@@ -4,7 +4,7 @@ A repository for storing code on visualisation of textual witnesses for the Coll
 
 ### TRAViz extension
 
-The tool located in the ``traviz-extension/`` directory is an experimental visualisation tool for comparing text witnesses. It is based on the TRAViz extension which is released under the [Fair Academic License (FAL)](http://vizcovery.org/fal.html)
+The tool located in the ``traviz-extension/`` directory is an experimental visualisation tool for comparing text witnesses. It is based on the [TRAViz](https://github.com/stjaenicke/TRAViz) visualisation tool by Stefan Jänicke which is released under the [Fair Academic License (FAL)](http://vizcovery.org/fal.html)
 
 ##### Building the extension from source  
   
